@@ -23,13 +23,13 @@ class UserController extends Controller
 
     public function store(UserNewRequest $request)
     {
-        return User::create($request->all());
+        return new UserShowResource(User::create($request->all()));
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
         $user->update($request->all());
-        return $user;
+        return new UserShowResource($user);
     }
 
     public function destroy(User $user)
