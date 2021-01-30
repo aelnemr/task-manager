@@ -43,18 +43,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//    public function getNameAttribute()
-//    {
-//        return 'Mr ' . $this->attributes['name'];
-//    }
-//
-//    public function setNameAttribute($name)
-//    {
-//        $this->attributes['name'] = 'Mr. ' . $name;
-//    }
-
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function getPhoneAttribute()
+    {
+        return $this->attributes['phone'] ?? '';
+    }
+
+    public function getCreatedFromAttribute()
+    {
+        return $this->attributes['created_at'] ? $this->created_at->diffForHumans() : '';
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'created_from' => $this->created_at ? $this->created_at->diffForHumans() : ""
+        ];
     }
 }
