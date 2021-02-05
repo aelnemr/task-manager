@@ -26,21 +26,25 @@ Route::group([
     'as' => 'v1.'
 ], function () {
 
-    Route::group([
-        'prefix' => 'projects',
-        'as' => 'projects.'
-    ], function () {
-       // projects route
-    });
+//    Route::group([
+//        'prefix' => 'projects',
+//        'as' => 'projects.'
+//    ], function () {
+//       Route::get('/', 'ProjectController@index')->name('index');
+//       Route::post('/', 'ProjectController@store')->name('store');
+//    });
 
-    Route::group([
-        'prefix' => 'users',
-        'as' => 'users.'
-    ], function () {
-        Route::get('/', 'UserController@index')->name('index');
-        Route::get('/{user}', 'UserController@show')->name('show');
-        Route::post('/', 'UserController@store')->name('store');
-        Route::put('/{user}', 'UserController@update')->name('update');
-        Route::delete('/{user}', 'UserController@destroy')->name('destroy');
-    });
+    Route::resource('projects', 'ProjectController')->except(['create', 'edit']);
+    Route::resource('users', 'UserController')->except(['create', 'edit']);
+
+//    Route::group([
+//        'prefix' => 'users',
+//        'as' => 'users.'
+//    ], function () {
+//        Route::get('/', 'UserController@index')->name('index');
+//        Route::get('/{user}', 'UserController@show')->name('show');
+//        Route::post('/', 'UserController@store')->name('store');
+//        Route::put('/{user}', 'UserController@update')->name('update');
+//        Route::delete('/{user}', 'UserController@destroy')->name('destroy');
+//    });
 });
