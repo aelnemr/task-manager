@@ -18,7 +18,8 @@ class UserListResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'created_from' => $this->created_from,
-            'is_active' => $this->is_active
+            'is_active' => $this->is_active,
+            'ref' => route('api.v1.users.show', $this->id),
         ];
     }
 }
