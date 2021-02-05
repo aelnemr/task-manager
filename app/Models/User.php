@@ -68,4 +68,9 @@ class User extends Authenticatable
             'created_from' => $this->created_at ? $this->created_at->diffForHumans() : ""
         ];
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'manager_id');
+    }
 }

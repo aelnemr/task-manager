@@ -19,7 +19,8 @@ class UserShowResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-            'created_from' => $this->created_from
+            'created_from' => $this->created_from,
+            'all_users' => route('api.v1.users.index')
         ];
     }
 }

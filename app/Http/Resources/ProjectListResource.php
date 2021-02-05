@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
-class UserListResource extends JsonResource
+class ProjectListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +18,8 @@ class UserListResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'created_from' => $this->created_from,
-            'is_active' => $this->is_active,
-            'ref' => route('api.v1.users.show', $this->id),
+            'image' => asset(Storage::url($this->image)),
+            'manager' => new UserShowResource($this->manager)
         ];
     }
 }
