@@ -19,9 +19,13 @@ class ProjectController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->ok(ProjectListResource::collection(Project::all())->resolve());
+        return $this->ok(
+            ProjectListResource::collection(
+                Project::with('manager')->paginate($request->query('limit'))
+            )->resolve()
+        );
     }
 
     /**
